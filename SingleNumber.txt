@@ -1,0 +1,29 @@
+// Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+
+import java.util.*;
+
+public class SingleNumber {
+    public static void main(String[] args) {
+       int[] nums = new int[]{1,2,2,4,4,5,1};
+        HashMap<Integer, Integer> lookupTable = new HashMap<>();
+
+	    // O(n) time
+        for (int i: nums) {
+            if (!lookupTable.containsKey(i)) {
+                lookupTable.put(i, 1);
+            } else {
+                lookupTable.put(i, lookupTable.get(i) + 1);
+            }
+        }
+
+    	// O(1) time        
+        for (int i: nums) {
+            if (lookupTable.get(i) == 1) {
+                System.out.println(i);
+            }
+        }
+        
+        // Error case, we should never return.
+        System.err.print("Error");
+    }    
+}
